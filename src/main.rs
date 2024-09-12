@@ -1,3 +1,8 @@
+pub mod handler;
+
+use crate::handler::handler::Handler;
+
 fn main() {
-    println!("Hello, world!");
+    let handler = Handler::new();
+    handler.read_input();
 }
