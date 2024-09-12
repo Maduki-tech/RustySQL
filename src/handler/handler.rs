@@ -1,5 +1,5 @@
+use crate::handler::sql_command::SqlCommandHandler;
 use std::io::{self, Write};
-
 /// Input handler for the sql
 pub struct Handler {}
 
@@ -31,13 +31,17 @@ impl Handler {
                 self.display_help();
             }
             _ => {
-                println!("Unrecognized command '{}'", input.trim());
+                self.handle_sql(input);
             }
         }
     }
 
     fn display_table(&self) {
         println!("Displaying table...");
+    }
+
+    fn handle_sql(&self, input: String) {
+        SqlCommandHandler::new().handle_sql(input.to_uppercase());
     }
 
     fn display_help(&self) {
